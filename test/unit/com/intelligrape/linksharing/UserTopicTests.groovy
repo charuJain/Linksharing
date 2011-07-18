@@ -1,8 +1,8 @@
-package linksharing
+package com.intelligrape.linksharing
 
-import grails.test.GrailsUnitTestCase
+import grails.test.*
 
-class TopicTests extends GrailsUnitTestCase {
+class UserTopicTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

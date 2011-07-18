@@ -1,8 +1,8 @@
 package linksharing
 
-import grails.test.GrailsUnitTestCase
+import grails.test.*
 
-class TopicTests extends GrailsUnitTestCase {
+class UtilControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

@@ -1,6 +1,6 @@
 package linksharing
 
-import grails.test.*
+import grails.test.GrailsUnitTestCase
 
 class DocumentResourceTests extends GrailsUnitTestCase {
     protected void setUp() {
