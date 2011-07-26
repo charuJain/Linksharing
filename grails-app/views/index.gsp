@@ -108,6 +108,11 @@
             </g:each>
         </ul>
     </div>
+
+
+
+    <ls:myDateFormat date="${new Date()}"/>
+
 </div>
 </body>
 </html>

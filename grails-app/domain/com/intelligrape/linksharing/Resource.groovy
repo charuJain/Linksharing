@@ -18,7 +18,12 @@ class Resource {
 
     //static hasMany = [userResources:UserResource]
     static constraints = {
-        header(blank: false)
+        heading(blank: false)
+        summary(blank: false)
 
+    }
+
+    String toString(){
+        return "${heading}"
     }
 }

@@ -4,6 +4,9 @@ class Topic {
 
     String name;
     boolean isPrivate = false;
+
+
+
    // Date CreatedOn;
 
     //List<Invitation>invitations=[]
@@ -14,7 +17,7 @@ class Topic {
     static hasMany = [userTopics: UserTopic, invitations: Invitation, resources: Resource]
     //,resources:Resource,invitations:Invitation
     static constraints = {
-        name(unique: true)
+        name(unique: true,blank: false)
 
 
     }

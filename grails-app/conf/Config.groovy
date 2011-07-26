@@ -11,7 +11,7 @@
 // }
 
 
-path='/home/charu/Documents/'
+path = '/home/charu/Documents/'
 
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
@@ -92,3 +92,16 @@ log4j = {
 
     warn 'org.mortbay.log'
 }
+
+grails {
+    mail {
+           host = "smtp.gmail.com"
+          port = 465
+          username = "charu@intelligrape.com"
+          password = "charu19891111"
+           props = ["mail.smtp.auth":"true",
+              "mail.smtp.socketFactory.port":"465",
+             "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+              "mail.smtp.socketFactory.fallback":"false"]
+
+} }

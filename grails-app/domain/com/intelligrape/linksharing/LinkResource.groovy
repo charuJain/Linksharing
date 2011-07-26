@@ -13,12 +13,15 @@ class LinkResource extends Resource {
 
     static constraints = {
 
-         url(url: true)
+
+         url(url: true,blank: false)
 
     }
 
 
-
+    String toString(){
+        return "${heading}"
+    }
 
 
 
