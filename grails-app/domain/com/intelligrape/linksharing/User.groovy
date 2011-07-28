@@ -8,6 +8,7 @@ class User {
     String address;
     String email;
     int age;
+//    String dateOfBirth;
 
     Long phoneNumber;
     boolean isAdmin = false;

@@ -8,6 +8,9 @@
 
 
     <script src="${resource(dir: 'js', file: 'jquery.validate.js')}" type="text/javascript"></script>
+    <script src="${resource(dir: 'js', file: 'jquery-ui-1.8.14.custom.min.js')}" type="text/javascript"></script>
+
+
 
 </head>
 
@@ -87,6 +90,15 @@
                     </td>
                 </tr>
 
+                 <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="DateOfBirth"><g:message code="user.DateOfBirth.label" default="DateOfBirth"/></label>
+                    </td>
+                    <td valign="top" class="value ${hasErrors(bean: userInstance, field: 'DateOfBirth', 'errors')}">
+                        <g:textField name="DateOfBirth" maxlength="15" value="${userInstance?.DateOfBirth}" id="datepicker"/>
+                    </td>
+                </tr>
+
                 <tr class="prop">
                     <td valign="top" class="name">
                         <label for="age"><g:message code="user.age.label" default="Age"/></label>
@@ -129,6 +141,9 @@
     </g:form>
 </div>
 
+
+
+
 <script type="text/javascript">
 
     $(function() {
@@ -144,9 +159,20 @@
                             remote:"${createLink(controller:'user' ,action:'alreadyExisting')}"
 
                         }
+                    },
+
+                    messages:{
+                        email:{
+
+
+                            required:"you must enter username before proceeding further" ,
+                            remote:"This email address is already existing please choose unique one"
+                        }
                     }
 
                 })
+
+                      $( "#datepicker" ).datepicker();
     })
 
 </script>

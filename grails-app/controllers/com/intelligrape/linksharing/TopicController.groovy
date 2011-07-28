@@ -2,29 +2,20 @@ package com.intelligrape.linksharing
 
 class TopicController {
 
-   // static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    // static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
         redirect(action: "list", params: params)
     }
 
-    def abc = {
-
-        render(view: "show")
 
 
-    }
-
-
-    def createtopic = {
-
-    }
 
     def list = {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        List<Topic> topicList = Topic.findAllByIsPrivateAndNameIlike(false, "%${params.searchText}%")
-        [topicInstanceList: topicList, topicInstanceTotal: Topic.count()]
-
+        params.max = Math.min(params.max ? params.int('max') : 5, 100)
+        List<Topic> topicList = Topic.findAllByIsPrivateAndNameIlike(false, "%${params.searchText}%", params)
+        Integer totalCount = Topic.countByIsPrivateAndNameIlike(false, "%${params.searchText}%")
+        [topicInstanceList: topicList, topicInstanceTotal: totalCount, searchText: params.searchText]
     }
 
     def create = {
@@ -32,7 +23,6 @@ class TopicController {
         topicInstance.properties = params
         User user = User.get(session.currentUser)
         return [topicInstance: topicInstance, user: user]
-
     }
 
     def save = {
@@ -56,8 +46,8 @@ class TopicController {
         }
         else {
             User user = User.get(session.currentUser)
-        return [topicInstance: topicInstance, user: user]
-           // [topicInstance: topicInstance]
+            return [topicInstance: topicInstance, user: user]
+            // [topicInstance: topicInstance]
         }
     }
 
@@ -70,7 +60,7 @@ class TopicController {
         else {
 
             User user = User.get(session.currentUser)
-            return [topicInstance: topicInstance,user:user]
+            return [topicInstance: topicInstance, user: user]
         }
     }
 

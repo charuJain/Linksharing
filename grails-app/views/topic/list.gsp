@@ -33,6 +33,8 @@
                 <g:sortableColumn property="isPrivate"
                                   title="${message(code: 'topic.isPrivate.label', default: 'Is Private')}"/>
 
+               <th>subscribe</th>
+
             </tr>
             </thead>
             <tbody>
@@ -44,16 +46,16 @@
 
                     <td>${fieldValue(bean: topicInstance, field: "name")}</td>
 
-                    <td>${fieldValue(bean: topicInstance, field: "createdBy")}</td>
+                    <td>${topicInstance?.createdBy?.name}</td>
 
                     <td><g:formatBoolean boolean="${topicInstance.isPrivate}"/></td>
 
-                    <ls:isSubscribed topic="${topicInstance}">
-                            <g:form controller="userTopic" action="save">
+                                        <ls:isSubscribed topic="${topicInstance}">
+                                <g:form controller="userTopic" action="save">
                                 <g:hiddenField name="user.id" value="${session.currentUser}"/>
                                 <g:hiddenField name="topic.id" value="${topicInstance?.id}"/>
                                 <g:hiddenField name="searchText" value="${searchText}"/>
-                                <g:submitButton name="subscribe" value="subscribe"/>
+                      <td>      <g:submitButton name="subscribe" value="subscribe"/>      </td>
                             </g:form>
                         </ls:isSubscribed>
 
