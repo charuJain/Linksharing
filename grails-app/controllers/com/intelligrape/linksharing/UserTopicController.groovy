@@ -2,6 +2,8 @@ package com.intelligrape.linksharing
 
 class UserTopicController {
 
+    def subscriptionService
+
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
@@ -20,16 +22,15 @@ class UserTopicController {
     }
 
     def save = {
-        def userTopicInstance = new UserTopic(params)
-        if (userTopicInstance.save(flush: true)) {
-            flash.message = "${message(code: 'default.created.message', args: [message(code: 'userTopic.label', default: 'UserTopic'), userTopicInstance.id])}"
-            redirect(action: "show", id: userTopicInstance.id)
+        if (subscriptionService.subscribeTopic(User.get(params.user.id),Topic.get(params.topic.id))) {
+            flash.message = "${message(code: 'default.created.message', args: [message(code: 'userTopic.label', default: 'UserTopic'), params.topic.id])}"
+            redirect(action: "show", id: params.topic.id)
         }
         else {
+           // render(view: "create", model: [userTopicInstance: userTopicInstance])
+            redirect(controller: 'topic',action:'list',params: ['searchText':params.searchText])
 
-            //render(view: "create", model: [userTopicInstance: userTopicInstance])
         }
-       redirect(controller: 'topic', action: 'list', params: ['searchText': params.searchText])
     }
 
     def show = {
@@ -50,7 +51,7 @@ class UserTopicController {
             redirect(action: "list")
         }
         else {
-            return [userTopicInstance: userTopicInstance]
+            render(view: 'edit', model: [userTopicInstance: userTopicInstance])
         }
     }
 
@@ -60,7 +61,7 @@ class UserTopicController {
             if (params.version) {
                 def version = params.version.toLong()
                 if (userTopicInstance.version > version) {
-                    
+
                     userTopicInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'userTopic.label', default: 'UserTopic')] as Object[], "Another user has updated this UserTopic while you were editing")
                     render(view: "edit", model: [userTopicInstance: userTopicInstance])
                     return

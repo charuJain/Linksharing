@@ -5,6 +5,11 @@ html * {
 
 /* GENERAL */
 
+.error {
+
+    color:red
+}
+
 .spinner {
     padding: 5px;
     position: absolute;

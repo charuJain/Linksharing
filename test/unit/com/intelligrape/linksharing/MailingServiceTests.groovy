@@ -1,8 +1,8 @@
-package com.intelligrape
+package com.intelligrape.linksharing
 
 import grails.test.*
 
-class AdminControllerTests extends ControllerUnitTestCase {
+class MailingServiceTests extends GrailsUnitTestCase {
     protected void setUp() {
         super.setUp()
     }

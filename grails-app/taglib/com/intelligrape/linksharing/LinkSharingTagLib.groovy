@@ -16,9 +16,8 @@ class LinkSharingTagLib {
 
 
 
-    def states = {
+    def states = { attrs, body ->
         List statelist = ["delhi", "haryana", 'guj', 'gujrat']
-
         out << g.render(template: "/user/states", model: [statelist: statelist])
 
 
@@ -32,49 +31,44 @@ class LinkSharingTagLib {
 
         }
     }
-    def topics = {
+    def topics = {attrs, body ->
 
         out << g.render(template: "/topic/topiclist", model: [topicInstanceList: Topic.list(params), topicInstanceTotal: Topic.count()])
 
 
     }
+}
 
-    def highestSubscribedPublicTopic = {
+//    def highestSubscribedPublicTopic = {
+//
+//        def userTopics = UserTopic.createCriteria().list() {
+//            projections {
+//                groupProperty("topic")
+//                count("user")
+//            }
+//            'topic' {
+//                eq('isPrivate', false);
+//            }
+//
+//        } as List
+//    userTopics=userTopics.sort{it.last()}.reverse()
+//        out << userTopics
+//
+//           }
 
-        def userTopics = UserTopic.createCriteria().list() {
-            projections {
-                groupProperty("topic")
-                count("user")
-            }
-            'topic' {
-                eq('isPrivate', false);
-            }
-
-        } as List
-    userTopics=userTopics.sort{it.last()}.reverse()
-        out << userTopics
-
-           }
-
-
-    def mostReadItems={
-
-
-        def userResources = UserResource.createCriteria().list() {
-            projections {
-              groupProperty("resource")
-              count("user")
-            }
-             eq("isRead",true)
-          userResources  = userResources.sort{it.last()}.reverse()
-
-            out<< userResources
-
-        }
-
-
-    }
-
-
-
-
+//
+//    def mostReadItems={
+//
+//
+//        def userResources = UserResource.createCriteria().list() {
+//            projections {
+//              groupProperty("resource")
+//              count("user")
+//            }
+//             eq("isRead",true)
+//          userResources  = userResources.sort{it.last()}.reverse()
+//
+//            out<< userResources
+//
+//        }
+//    }

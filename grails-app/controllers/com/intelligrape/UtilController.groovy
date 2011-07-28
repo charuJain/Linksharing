@@ -9,6 +9,7 @@ import com.intelligrape.linksharing.LinkResource
 import com.intelligrape.linksharing.UserResource
 import com.intelligrape.linksharing.Resource
 import linksharing.CharuJob
+import grails.converters.JSON
 //import linksharing.TopicTests
 
 class UtilController {
@@ -55,6 +56,9 @@ class UtilController {
     }
 
 
+
+
+
     def createResources = {
         Topic.list().each {Topic topic ->
             (1..10).each {
@@ -96,21 +100,21 @@ class UtilController {
     }
 
 
-    def triggerjob ={
+    def triggerjob = {
         CharuJob.triggerNow()
-       render "job triggered"
+        render "job triggered"
 
     }
 
 
 
-    def sendmail={
+    def sendmail = {
 
-   sendMail {
-  to "gauravs@intelligrape.com"
-  subject "Hello John"
-  html '<b>Hello</b> World'
-}
+        sendMail {
+            to "gauravs@intelligrape.com"
+            subject "Hello John"
+            html '<b>Hello</b> World'
+        }
 
     }
 

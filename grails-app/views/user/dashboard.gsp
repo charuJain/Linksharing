@@ -11,7 +11,7 @@
     <g:render template="/shared/header"></g:render>
     <span class="menuButton"><g:link controller="topic" action="create">create new topic</g:link>
     </span>
-    
+
     <g:form controller="topic" action="list">
     Find The topic <g:textField name="searchText"/>
      <g:submitButton name="topicsearch" value="search now"/>
@@ -34,6 +34,38 @@
                 <td>${resource?.resource?.topic?.name}</td>
                 <td>${resource.resource.summary}</td>   <tr>
         </g:each>
+
+    </table>
+    <table border="1">
+
+        <tr>
+           <th>topics</th>
+            <th>count</th>
+        </tr>
+
+        <h1>highest subscribed topics</h1>
+        <g:each in='${userTopics}' var="userTopic">
+            <tr><td> ${userTopic.first().name}
+            <td> ${userTopic.last()}</tr>
+
+
+        </g:each>
+
+    </table>
+    <table border="1">
+
+        <tr>
+           <th>topics</th>
+            <th>isreadcount</th>
+        </tr>
+
+        <h1>most Read items</h1>
+        <g:each in='${userResources}' var="userResource">
+            <tr><td> ${userResource.first().heading}
+            <td> ${userResource.last()}</tr>
+
+        </g:each>
+
     </table>
 
     <h1><u>subscibed topics</u></h1>
@@ -46,18 +78,20 @@
             <g:link controller="topic" action="show" id="${topic?.topic?.id}">
                 ${topic?.topic?.name}</td></g:link>
         </g:each>
-        
-       
+
+
     </table>
-    <ls:highestSubscribedPublicTopic/>
+
+
+    %{--<ls:highestSubscribedPublicTopic/>--}%
        <br>
      %{--<ls:mostReadItems/>--}%
     <div class="paginateButtons" >
     <g:paginate total="${topicCount}"/>
 
       </div>
-    
-    
+
+
 </div>
 </body>
 </html>

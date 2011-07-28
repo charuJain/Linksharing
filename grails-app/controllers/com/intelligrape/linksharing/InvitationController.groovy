@@ -2,6 +2,8 @@ package com.intelligrape.linksharing
 
 class InvitationController {
 
+
+    def mailingService;
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def handler = {
@@ -119,51 +121,11 @@ class InvitationController {
             }
         }
         else {
-
-
-            render "Invitation successfully Added"
-            cmd.sendTos.each {
-                println ">>>>>>>>>>>>>>> ${it}"
-
-
-                def invitation = new Invitation();
-
-
-                println "2"
-                invitation.sendFrom = User.get(cmd.sendFrom)
-                println "3"
-                invitation.sendTo = User.findByEmail(it);
-                println "4"
-                invitation.topic = Topic.get(cmd.topic)
-                println "5"
-                invitation.save(flush: true)
-
-
-                println ">>>>>>>>>>>>>>>>>>${invitation.sendFrom.email}"
-                if (invitation) {           println "6"
-                                                    sendMail {
-                                                        println "7"
-                                                        to invitation.sendTo?.email
-                                                        println "8"
-                                                        subject "Hello ${invitation.sendTo?.name}"
-                                                        println "9"
-                                                        html "You have got an invitation for the Topic ${invitation.topic?.name} from ${invitation.sendFrom?.name}."
-                                                         println "10"
-
-                                                    }
-
-                      println "11"
-                    render "invitates sent"
-                     println "12"
-
-                                                }
-
-
-            }
+                         println cmd.dump()
+            mailingService.sendInvitation(cmd.sendTos.grep{it}, cmd.sendFrom, cmd.topic)
         }
-
-
     }
 
 
 }
+

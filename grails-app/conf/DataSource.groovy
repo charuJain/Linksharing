@@ -13,14 +13,14 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
+            dbCreate = "create" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://127.0.0.1:3306/linksharing"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:hsqldb:mem:testDb"
+            url = "jdbc:mysql://127.0.0.1:3306/linksharingTest"
         }
     }
     production {
