@@ -35,6 +35,7 @@
         <div id="tabs-1">
             <div id="updateResourceTable">
                 <g:include action="resourcePopulate"/>
+            </div>
         </div>
 
         <div id="tabs-2">
@@ -44,39 +45,17 @@
         </div>
 
         <div id="tabs-3">
-            <table border="1" id="myTable2" class="tablesorter">
-                <thead>
-                <tr>
-                    <th>topics</th>
-                    <th>Number Of Reads</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in='${userResources}' var="userResource">
-                    <tr><td><g:link controller="resource" action="show"
-                                    id="${userResource.first().id}">${userResource.first().heading}</g:link></td>
-                        <td> ${userResource.last()}</td></tr>
-                </g:each>
-                </tbody>
-            </table>
+            <div id="updateMostReadTable">
+                <g:include action="mostReadResources"/>
+            </div>
         </div>
 
         <div id="tabs-4">
-            <table border="1" id="myTable3" class="tablesorter">
-                <thead>
-                <tr>
-                    <th>Topic name</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in='${topics}' var='topic'>
-                    <tr><td>
-                    <g:link controller="topic" action="show" id="${topic?.topic?.id}">
-                        ${topic?.topic?.name}</g:link></td>
-                </g:each>
-                </tbody>
-            </table>
+            <div id="updateTopicTable">
+                <g:include action="topicPopulate"/>
+            </div>
         </div>
+
     </div>
 
 </div>

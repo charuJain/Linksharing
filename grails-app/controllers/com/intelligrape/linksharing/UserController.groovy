@@ -7,13 +7,8 @@ class UserController {
     def mostSubscribedService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     def dashboard = {
-        //params.max = 2
         User user = User.get(session.currentUser)
-        List<UserTopic> topics = UserTopic.findAllByUser(user, params)
-        Integer topicCount = UserTopic.countByUser(user)
-//        List<UserTopic> userTopics = mostSubscribedService.highestSubscribedTopic()
-        List<UserResource> userResources = mostSubscribedService.mostReadResources()
-        [user1: user, topics: topics, topicCount: topicCount, userResources: userResources]
+        [user1: user]
     }
 
     def resourcePopulate = {
@@ -30,11 +25,23 @@ class UserController {
         render(template: "highestSubscribedTopicTable", model: [userTopics: userTopics, mostSubscribedTopicTotal: mostSubscribedTopicTotal])
     }
 
+    def mostReadResources = {
+        List<UserResource> userResources = mostSubscribedService.mostReadResources(params.max ? params.int('max') : 5, params.offset ? params.int('offset') : 0)
+        Integer mostReadResourceTotal = mostSubscribedService.resourceListTotal()
+        render(template: "mostReadResourceTable", model: [userResources: userResources, mostReadResourceTotal: mostReadResourceTotal])
+    }
+
+    def topicPopulate = {
+        params.max = Math.min(params.int('max') ?: 5, 100)
+        User user = User.get(session.currentUser)
+        List<UserTopic> topics = UserTopic.findAllByUser(user, params)
+        Integer topicCount = UserTopic.countByUser(user)
+        render(template: "topicTable", model: [topics: topics, topicCount: topicCount])
+    }
 
     def logout = {
         session.invalidate()
         redirect(action: "loginHandler")
-
     }
 
     def loginHandler = {

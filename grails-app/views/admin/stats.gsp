@@ -46,7 +46,6 @@
         </div>
 
         <div id="tabs-4">
-
             <div id="updateResourceTable">
                 <g:include action="resourceInformationPopulate"/>
 
