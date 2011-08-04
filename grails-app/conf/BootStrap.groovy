@@ -11,17 +11,12 @@ class BootStrap {
 
     def bootstrapService
 
-//    def subscriptionService
-
-
     def init = { servletContext ->
         if (!User.count()) {
             bootstrapService.addUser()
-            //bootstrapService.addTopic()
             bootstrapService.subscribedTopics()
             bootstrapService.createResources()
             bootstrapService.createDocumentResource()
-
             bootstrapService.createRead()
             bootstrapService.markUnread()
             bootstrapService.printUnread()

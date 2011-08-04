@@ -3,26 +3,15 @@ package com.intelligrape.linksharing
 class LinkResource extends Resource {
     String url;
 
+    static constraints = {
+        url(url: true, blank: false)
+    }
     static mapping = {
         tablePerHierarchy false
         table "URLResources"
-
-
     }
 
-
-    static constraints = {
-
-
-         url(url: true,blank: false)
-
-    }
-
-
-    String toString(){
+    String toString() {
         return "${heading}"
     }
-
-
-
 }

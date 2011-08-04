@@ -25,51 +25,22 @@
 
     <div id="tabs">
         <ul>
-            <li><a href="#tabs-1">unread items</a></li>
+            <li><a href="#tabs-1">Unread Resouces</a></li>
             <li><a href="#tabs-2">highest subscribed topics</a></li>
-            <li><a href="#tabs-3">most Read items</a></li>
-            <li><a href="#tabs-4">subscibed Resources</a></li>
+            <li><a href="#tabs-3">Most Read Resources</a></li>
+            <li><a href="#tabs-4">Subscibed Topics</a></li>
 
         </ul>
 
         <div id="tabs-1">
-            <table border="1" id="myTable" class="tablesorter">
-                <thead>
-                <tr>
-                    <th>Resource Heading</th>
-                    <th>Resource Belongsto</th>
-                    <th>Resource Summary</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in='${resources}' var="resource">
-                    <tr>
-                        <td>${resource?.resource?.heading}</td>
-                        <td>${resource?.resource?.topic?.name}</td>
-                        <td>${resource.resource.summary}</td>
-                    </tr>
-                </g:each>
-                </tbody>
-            </table>
+            <div id="updateResourceTable">
+                <g:include action="resourcePopulate"/>
         </div>
 
         <div id="tabs-2">
-            <table border="1" id="myTable1" class="tablesorter">
-                <thead>
-                <tr>
-                    <th>topics</th>
-                    <th>count</th>
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in='${userTopics}' var="userTopic">
-                    <tr>
-                       <g:link controller="topic" action="show" id="${userTopic.first().id}">
-                        <td>${userTopic.first().name} </g:link>
-                        <td> ${userTopic.last()}</tr>
-                </g:each>
-                </tbody>
-            </table>
+            <div id="updateHighestSubscribedTable">
+                <g:include action="highestSubscribedTopics"/>
+            </div>
         </div>
 
         <div id="tabs-3">
@@ -77,13 +48,14 @@
                 <thead>
                 <tr>
                     <th>topics</th>
-                    <th>isreadcount</th>
+                    <th>Number Of Reads</th>
                 </tr>
                 </thead>
                 <tbody>
                 <g:each in='${userResources}' var="userResource">
-                    <tr><td>${userResource.first().heading}
-                        <td> ${userResource.last()}</tr>
+                    <tr><td><g:link controller="resource" action="show"
+                                    id="${userResource.first().id}">${userResource.first().heading}</g:link></td>
+                        <td> ${userResource.last()}</td></tr>
                 </g:each>
                 </tbody>
             </table>
@@ -105,25 +77,17 @@
                 </tbody>
             </table>
         </div>
-
-        %{--<ls:highestSubscribedPublicTopic/>--}%
-                %{--<ls:mostReadItems/>--}%
-        %{--<div class=" paginateButtons">--}%
-            %{--<g:paginate total="${topicCount}"/>--}%
-
-        %{--</div>--}%
-
     </div>
 
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#myTable").tablesorter();
-           $( "#tabs" ).tabs();
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#myTable").tablesorter();
+        $("#tabs").tabs();
 
-        }
-        );
+    }
+    );
 
-    </script>
+</script>
 </body>
 </html>

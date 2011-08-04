@@ -52,9 +52,9 @@
 
                     <td>${fieldValue(bean: linkResourceInstance, field: "url")}</td>
 
-                    <td>${fieldValue(bean: linkResourceInstance, field: "createdBy")}</td>
+                    <td>${linkResourceInstance?.createdBy?.name}</td>
 
-                    <td><g:formatDate date="${linkResourceInstance.dateCreated}"/></td>
+                     <td>   <ls:myDateFormat date="${new Date()}"/>  </td>
 
                     <td>${fieldValue(bean: linkResourceInstance, field: "summary")}</td>
 

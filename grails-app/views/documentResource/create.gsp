@@ -1,6 +1,4 @@
-
-
-<%@ page import="com.intelligrape.linksharing.DocumentResource" %>
+<%@ page import="com.intelligrape.linksharing.User; com.intelligrape.linksharing.DocumentResource" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -42,7 +40,7 @@
                                     <label for="createdBy"><g:message code="documentResource.createdBy.label" default="Created By" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: documentResourceInstance, field: 'createdBy', 'errors')}">
-                                    <g:select name="createdBy.id" from="${com.intelligrape.linksharing.User.list()}" optionKey="id" value="${documentResourceInstance?.createdBy?.id}"  />
+                                    <g:select name="createdBy.id" from="${User.list()}" optionKey="id" value="${documentResourceInstance?.createdBy?.id}"  />
                                 </td>
                             </tr>
                         

@@ -33,7 +33,7 @@
                 <g:sortableColumn property="isPrivate"
                                   title="${message(code: 'topic.isPrivate.label', default: 'Is Private')}"/>
 
-               <th>subscribe</th>
+                <th>subscribe</th>
 
             </tr>
             </thead>
@@ -50,15 +50,14 @@
 
                     <td><g:formatBoolean boolean="${topicInstance.isPrivate}"/></td>
 
-                                        <ls:isSubscribed topic="${topicInstance}">
-                                <g:form controller="userTopic" action="save">
-                                <g:hiddenField name="user.id" value="${session.currentUser}"/>
-                                <g:hiddenField name="topic.id" value="${topicInstance?.id}"/>
-                                <g:hiddenField name="searchText" value="${searchText}"/>
-                      <td>      <g:submitButton name="subscribe" value="subscribe"/>      </td>
-                            </g:form>
-                        </ls:isSubscribed>
-
+                    <ls:isSubscribed topic="${topicInstance}">
+                        <g:form controller="userTopic" action="save">
+                            <g:hiddenField name="user.id" value="${session.currentUser}"/>
+                            <g:hiddenField name="topic.id" value="${topicInstance?.id}"/>
+                            <g:hiddenField name="searchText" value="${searchText}"/>
+                            <td><g:submitButton name="subscribe" value="subscribe"/></td>
+                        </g:form>
+                    </ls:isSubscribed>
 
                 </tr>
             </g:each>

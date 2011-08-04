@@ -2,31 +2,36 @@ package com.intelligrape.linksharing
 
 class TopicController {
 
-    // static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def index = {
         redirect(action: "list", params: params)
     }
 
-
-
-
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 5, 100)
         List<Topic> topicList = Topic.findAllByIsPrivateAndNameIlike(false, "%${params.searchText}%", params)
         Integer totalCount = Topic.countByIsPrivateAndNameIlike(false, "%${params.searchText}%")
+        if (params.searchText) {
+            topicList = Topic.findAllByIsPrivateAndNameIlike(false, "%${params.searchText}%", params)
+            totalCount = Topic.countByIsPrivateAndNameIlike(false, "%${params.searchText}%")
+        }
+        else {
+            topicList = Topic.list(params)
+            totalCount=Topic.count()
+        }
         [topicInstanceList: topicList, topicInstanceTotal: totalCount, searchText: params.searchText]
     }
 
     def create = {
-        def topicInstance = new Topic()
+        Topic topicInstance = new Topic()
         topicInstance.properties = params
         User user = User.get(session.currentUser)
         return [topicInstance: topicInstance, user: user]
     }
 
     def save = {
-        def topicInstance = new Topic(params)
+        Topic topicInstance = new Topic(params)
         if (topicInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'topic.label', default: 'Topic'), topicInstance.id])}"
             redirect(action: "show", id: topicInstance.id)
@@ -37,35 +42,32 @@ class TopicController {
     }
 
     def show = {
-        def topicInstance = Topic.get(params.id)
-        if (!topicInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'topic.label', default: 'Topic'), params.id])}"
-            // model['list':'list]
-
-            redirect(action: "list")
-        }
-        else {
+        Topic topicInstance = Topic.get(params.id)
+        if (topicInstance) {
             User user = User.get(session.currentUser)
             return [topicInstance: topicInstance, user: user]
-            // [topicInstance: topicInstance]
+
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'topic.label', default: 'Topic'), params.id])}"
+            redirect(action: "list")
         }
     }
 
     def edit = {
-        def topicInstance = Topic.get(params.id)
-        if (!topicInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'topic.label', default: 'Topic'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-
+        Topic topicInstance = Topic.get(params.id)
+        if (topicInstance) {
             User user = User.get(session.currentUser)
             return [topicInstance: topicInstance, user: user]
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'topic.label', default: 'Topic'), params.id])}"
+            redirect(action: "list")
         }
     }
 
     def update = {
-        def topicInstance = Topic.get(params.id)
+        Topic topicInstance = Topic.get(params.id)
         if (topicInstance) {
             if (params.version) {
                 def version = params.version.toLong()
@@ -92,7 +94,7 @@ class TopicController {
     }
 
     def delete = {
-        def topicInstance = Topic.get(params.id)
+        Topic topicInstance = Topic.get(params.id)
         if (topicInstance) {
             try {
                 topicInstance.delete(flush: true)

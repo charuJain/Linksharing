@@ -2,93 +2,53 @@ package com.intelligrape.linksharing
 
 import grails.converters.JSON
 
-//import org.xhtmlrenderer.css.parser.property.PrimitivePropertyBuilders.PaddingRight
-
 class UserController {
 
+    def mostSubscribedService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-
-   def alreadyExisting={
-     User user=User.findByEmail(params.email)
-     if(user){
-        render false
-     }
-     else
-     render true
-
-   }
-
-    def dateof = {
-
-        println params
-        log.info(params)
-        String message = ""
-        User user = User.findByUsernameAndPassword(params.username, params.password)
-        if (user) {
-            message = "you exist"
-        }
-        else
-            message = "you are not a valid user"
-            render([message: message] as JSON)
-        }
-
-
     def dashboard = {
-        params.max = 2
+        //params.max = 2
         User user = User.get(session.currentUser)
-        List<UserResource> resources = user.userResources as List;
-        //List<UserTopic> topics = user.userTopics as List;
         List<UserTopic> topics = UserTopic.findAllByUser(user, params)
         Integer topicCount = UserTopic.countByUser(user)
-        def userTopics = UserTopic.createCriteria().list() {
-            projections {
-                groupProperty("topic")
-                count("user")
-            }
-            'topic' {
-                eq('isPrivate', false);
-            }
-        } as List
-        userTopics = userTopics.sort {it.last()}.reverse()
-        def userResources = UserResource.createCriteria().list() {
-            projections {
-                groupProperty("resource")
-                count("user")
-            }
-            eq("isRead", true)
-        }
-        userResources = userResources.sort {it.last()}.reverse()
-        [user1: user, resources: resources.findAll {!it.isRead}, topics: topics, topicCount: topicCount, userTopics: userTopics, userResources: userResources]
-        //render(view: 'dashboard', model: [user1: user])
+//        List<UserTopic> userTopics = mostSubscribedService.highestSubscribedTopic()
+        List<UserResource> userResources = mostSubscribedService.mostReadResources()
+        [user1: user, topics: topics, topicCount: topicCount, userResources: userResources]
     }
+
+    def resourcePopulate = {
+        params.max = Math.min(params.int('max') ?: 5, 100)
+        User user = User.get(session.currentUser)
+        List<UserResource> resources = UserResource.findAllByUserAndIsRead(user, false, params);
+        Integer resourceTotal = UserResource.countByUserAndIsRead(user, false)
+        render(template: "resourceTable", model: [resources: resources, resourceTotal: resourceTotal])
+    }
+
+    def highestSubscribedTopics = {
+        List<UserTopic> userTopics = mostSubscribedService.highestSubscribedTopic(params.max ? params.int('max') : 10, params.offset ? params.int('offset') : 0)
+        Integer mostSubscribedTopicTotal = mostSubscribedService.topicListTotal()
+        render(template: "highestSubscribedTopicTable", model: [userTopics: userTopics, mostSubscribedTopicTotal: mostSubscribedTopicTotal])
+    }
+
 
     def logout = {
         session.invalidate()
         redirect(action: "loginHandler")
+
     }
 
     def loginHandler = {
-
-        println "2"
         User user = User.findByUsernameAndPassword(params.username, params.password)
-
-        println "8"
         if (user) {
-            println "3"
             session['currentUser'] = user.id
-
             if (user.username == 'admin') {
-                println "4"
                 redirect(controller: 'admin', action: 'stats')
             }
             else {
-
-                println "5"
                 redirect(controller: 'user', action: 'dashboard')
             }
         }
         else {
-            println "6"
             flash.message = "user not found or invalid password"
             render(view: 'login')
         }
@@ -124,7 +84,6 @@ class UserController {
 
 
     def index = {
-
         redirect(action: "loginHandler")
     }
 
@@ -134,20 +93,16 @@ class UserController {
     }
 
     def create = {
-        def userInstance = new User()
+        User userInstance = new User()
         userInstance.properties = params
         return [userInstance: userInstance]
     }
 
     def save = {
-        def userInstance = new User(params)
-        if (userInstance.save(flush: true))
-
-
-        {
+        User userInstance = new User(params)
+        if (userInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])}"
             redirect(action: "show", id: userInstance.id)
-
 
         }
         else {
@@ -156,7 +111,7 @@ class UserController {
     }
 
     def show = {
-        def userInstance = User.get(params.id)
+        User userInstance = User.get(params.id)
         if (userInstance) {
             render(view: 'show', model: [userInstance: userInstance])
         }
@@ -168,7 +123,7 @@ class UserController {
 
     def edit = {
 
-        def userInstance = User.get(params.id)
+        User userInstance = User.get(params.id)
         println "2 ${User.list()*.id}-----${params.id}"
         if (userInstance) {
             render(view: 'edit', model: [userInstance: userInstance])
@@ -184,7 +139,7 @@ class UserController {
     }
 
     def update = {
-        def userInstance = User.get(params.id)
+        User userInstance = User.get(params.id)
         if (userInstance) {
             if (params.version) {
                 def version = params.version.toLong()
@@ -211,7 +166,7 @@ class UserController {
     }
 
     def delete = {
-        def userInstance = User.get(params.id)
+        User userInstance = User.get(params.id)
         if (userInstance) {
             try {
                 userInstance.delete(flush: true)

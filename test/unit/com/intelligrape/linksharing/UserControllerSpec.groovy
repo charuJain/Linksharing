@@ -1,8 +1,11 @@
 package com.intelligrape.linksharing
 
 import grails.plugin.spock.ControllerSpec
+import spock.lang.Unroll
 
 class UserControllerSpec extends ControllerSpec {
+
+    @Unroll("#sno login")
     def "test the login handler"() {
         setup:
         mockDomain(User)
@@ -21,7 +24,6 @@ class UserControllerSpec extends ControllerSpec {
         println redirectArgs
         redirectArgs.controller == controllerName
         redirectArgs.action == actionName
-        renderArgs.view == 'login'
         mockSession.currentUser == userId
         println user1.name
         println user2.name
@@ -29,7 +31,8 @@ class UserControllerSpec extends ControllerSpec {
         where:
         sno | name    | password   | controllerName | actionName  | userId
         1   | "admin" | "password" | "admin"        | "stats"     | 1
-        2   | "test2" | "password" | "user"         | "dashboard" | 2
+        2   | "test2" | "password" | "user"         | "dashboard" | 4
+
 
     }
 }

@@ -1,40 +1,29 @@
 package com.intelligrape.linksharing
 
-import com.intelligrape.linksharing.User
-import com.intelligrape.linksharing.Topic
-import com.intelligrape.linksharing.Invitation
-
 class AdminController {
 
-    //def index = { }
-
-//    def beforeInterceptor = {
-//
-//        if(params.username!='admin@intelligrape.com')  {
-//            render "access denied"
-//            return false;
-//        }
-//
-//
-//
-//    }
-
-    def login={
-            }
-
     def stats = {
-        [usercount:User.count(),topiccount: Topic.count(),invitationcount:Invitation.count()]
-//        int count = ;
-//
-//        render "number of users are"+" ";
-//        render count +"  ";
-//
-//
-//        int count1 =;
-//
-//
-//        render "number of topics are"+" ";
-//
-//        render count1;
+        [usercount: User.count(), topiccount: Topic.count(), invitationcount: Invitation.count()]
+    }
+
+    def userInformationPopulate = {
+        params.max = Math.min(params.int('max') ?: 5, 100)
+        List<User> userList = User.list(params)
+        Integer userTotal = User.count()
+        render(template: "userInformationTable", model: [users: userList, userTotal: userTotal])
+    }
+
+    def topicInformationPopulate = {
+        params.max = Math.min(params.int('max') ?: 5, 100)
+        List<Topic> topicList = Topic.list(params)
+        Integer topicTotal = Topic.count()
+        render(template: "topicInformationPopulate", model: [topics: topicList, topicTotal: topicTotal])
+    }
+
+    def resourceInformationPopulate = {
+        params.max = Math.min(params.int('max') ?: 5, 100)
+        List<Resource> resourceList = Resource.list(params)
+        Integer resourceTotal = Resource.count()
+        render(template: "resourceInformationTable", model: [resources: resourceList, resourceTotal: resourceTotal])
     }
 }

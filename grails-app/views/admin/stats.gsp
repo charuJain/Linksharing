@@ -1,39 +1,65 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: charu
-  Date: 21/7/11
-  Time: 9:42 AM
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
-  <head><title>
-
-
+<head>
     <meta name="layout" content="main"/>
+    <script src="${resource(dir: 'js', file: 'jquery.tablesorter.js')}" type="text/javascript"></script>
+    <script src="${resource(dir: 'js', file: 'jquery-ui-1.8.14.custom.min.js')}" type="text/javascript"></script>
+</head>
 
+<body>
 
+<div class="nav">
+    <g:render template="/shared/header"/>
+</div>
 
-  </title></head>
-  <body>
+<h1>Welcome Admin</h1>
 
-    <div class="nav">
-  <g:render template="/shared/header"/>
-           </div>
-  <br>
-  <p>NUMBER OF USERS ARE:${usercount}</p>     <br>
+<div>
 
-  <p>number of topics are:${topiccount}</p>      <br>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Complete Statistics</a></li>
+            <li><a href="#tabs-2">User's List</a></li>
+            <li><a href="#tabs-3">Topic's List</a></li>
+            <li><a href="#tabs-4">Resorce's List</a></li>
+        </ul>
 
-  <p>number of invitations are:${invitationcount}</p> <br>
+        <div id="tabs-1">
 
+            <tr>Nunber Of User's are:${usercount}</tr>  <br>
+            <tr>Number Of Topics are:${topiccount}</tr>     <br>
+            <tr>Number Of Invitations are:${invitationcount}</tr><br>
 
+        </div>
 
+        <div id="tabs-2">
+            <div id="updateUserTable">
+                <g:include action="userInformationPopulate"/>
+            </div>
+        </div>
 
+        <div id="tabs-3">
+            <div id="updateTopicTable">
+                <g:include action="topicInformationPopulate"/>
 
+            </div>
+        </div>
 
+        <div id="tabs-4">
 
+            <div id="updateResourceTable">
+                <g:include action="resourceInformationPopulate"/>
 
-  </body>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<jq:jquery>
+    $("#tabs").tabs();
+</jq:jquery>
+
+</body>
+
 </html>

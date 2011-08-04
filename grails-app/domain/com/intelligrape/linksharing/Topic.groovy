@@ -4,21 +4,22 @@ class Topic {
 
     String name;
     boolean isPrivate = false;
+    Date dateCreated;
 
-
-
-   // Date CreatedOn;
-
-    //List<Invitation>invitations=[]
-    //List<Resource>resources=[]
-
-    static belongsTo = [createdBy:User]
+    static belongsTo = [createdBy: User]
 
     static hasMany = [userTopics: UserTopic, invitations: Invitation, resources: Resource]
-    //,resources:Resource,invitations:Invitation
+
     static constraints = {
-        name(unique: true,blank: false)
-
-
+        name(unique: true, blank: false)
     }
+
+    def afterInsert = {
+        User user = this.createdBy
+        UserTopic userTopic = new UserTopic(topic: this, user: user)
+        user.addToUserTopics(userTopic)
+        this.addToUserTopics(userTopic)
+    }
+
+
 }

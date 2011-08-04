@@ -7,15 +7,11 @@ class InvitationController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
     def handler = {
-
         Topic topicToSend = Topic.get(params.id)
         User sender = User.get(session.currentUser.toLong())
         println params.name
         println topicToSend
         [from: sender, topic: topicToSend]
-
-        //render("invitations sent")
-
     }
 
     def index = {
@@ -28,13 +24,13 @@ class InvitationController {
     }
 
     def create = {
-        def invitationInstance = new Invitation()
+        Invitation invitationInstance = new Invitation()
         invitationInstance.properties = params
         return [invitationInstance: invitationInstance]
     }
 
     def save = {
-        def invitationInstance = new Invitation(params)
+        Invitation invitationInstance = new Invitation(params)
         if (invitationInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'invitation.label', default: 'Invitation'), invitationInstance.id])}"
             redirect(action: "show", id: invitationInstance.id)
@@ -45,29 +41,31 @@ class InvitationController {
     }
 
     def show = {
-        def invitationInstance = Invitation.get(params.id)
-        if (!invitationInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'invitation.label', default: 'Invitation'), params.id])}"
-            redirect(action: "list")
+        Invitation invitationInstance = Invitation.get(params.id)
+        if (invitationInstance) {
+               [invitationInstance: invitationInstance]
         }
         else {
-            [invitationInstance: invitationInstance]
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'invitation.label', default: 'Invitation'), params.id])}"
+            redirect(action: "list")
+
         }
     }
 
     def edit = {
-        def invitationInstance = Invitation.get(params.id)
-        if (!invitationInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'invitation.label', default: 'Invitation'), params.id])}"
-            redirect(action: "list")
+        Invitation invitationInstance = Invitation.get(params.id)
+        if (invitationInstance) {
+            return [invitationInstance: invitationInstance]
         }
         else {
-            return [invitationInstance: invitationInstance]
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'invitation.label', default: 'Invitation'), params.id])}"
+            redirect(action: "list")
+
         }
     }
 
     def update = {
-        def invitationInstance = Invitation.get(params.id)
+        Invitation invitationInstance = Invitation.get(params.id)
         if (invitationInstance) {
             if (params.version) {
                 def version = params.version.toLong()
@@ -94,7 +92,7 @@ class InvitationController {
     }
 
     def delete = {
-        def invitationInstance = Invitation.get(params.id)
+        Invitation invitationInstance = Invitation.get(params.id)
         if (invitationInstance) {
             try {
                 invitationInstance.delete(flush: true)
@@ -112,16 +110,13 @@ class InvitationController {
         }
     }
 
-    def sendHandler = {SendCommand cmd ->
-
-
+    def sendHandler = {SendEmailCO cmd ->
         if (cmd.hasErrors()) {
             cmd.errors.allErrors.each {
-                println it
+
             }
         }
         else {
-                         println cmd.dump()
             mailingService.sendInvitation(cmd.sendTos.grep{it}, cmd.sendFrom, cmd.topic)
         }
     }

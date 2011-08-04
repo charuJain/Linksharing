@@ -11,7 +11,5 @@ class DocumentResource extends Resource {
 
     }
     static constraints = {
-
-
     }
 }

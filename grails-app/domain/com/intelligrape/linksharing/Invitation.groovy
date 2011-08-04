@@ -4,10 +4,9 @@ class Invitation {
 
     User sendTo;
     User sendFrom;
-
+    Topic topic;
 
     static belongsTo = [User, Topic]
-    Topic topic;
 
     static constraints = {
 

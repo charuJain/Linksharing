@@ -18,11 +18,11 @@ class ResourceController {
         def resourceInstance = new Resource()
         resourceInstance.properties = params
         User user = User.get(session.currentUser)
-        return [resourceInstance: resourceInstance,user: user, topicName :resource.topic.name]
+        return [resourceInstance: resourceInstance, user: user, topicName: resource.topic.name]
     }
 
     def save = {
-        def resourceInstance = new Resource(params)
+        Resource resourceInstance = new Resource(params)
         if (resourceInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'resource.label', default: 'Resource'), resourceInstance.id])}"
             redirect(action: "show", id: resourceInstance.id)
@@ -33,40 +33,42 @@ class ResourceController {
     }
 
     def show = {
-        def resourceInstance = Resource.get(params.id)
-        if (!resourceInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'resource.label', default: 'Resource'), params.id])}"
-            redirect(action: "list")
+        Resource resourceInstance = Resource.get(params.id)
+        if (resourceInstance) {
+            User user = User.get(session.currentUser)
+            [resourceInstance: resourceInstance, user: user]
+
         }
         else {
-
-
-             User user = User.get(session.currentUser)
-            [resourceInstance: resourceInstance,user:user]
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'resource.label', default: 'Resource'), params.id])}"
+            redirect(action: "list")
 
         }
     }
 
     def edit = {
-        def resourceInstance = Resource.get(params.id)
-        if (!resourceInstance) {
+        Resource resourceInstance = Resource.get(params.id)
+        if (resourceInstance) {
+            User user = User.get(session.currentUser)
+            return [resourceInstance: resourceInstance, user: user]
+        }
+
+
+        else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'resource.label', default: 'Resource'), params.id])}"
             redirect(action: "list")
-        }
-        else {
 
-            User user = User.get(session.currentUser)
-            return [resourceInstance: resourceInstance,user:user]
         }
     }
 
+
     def update = {
-        def resourceInstance = Resource.get(params.id)
+        Resource resourceInstance = Resource.get(params.id)
         if (resourceInstance) {
             if (params.version) {
                 def version = params.version.toLong()
                 if (resourceInstance.version > version) {
-                    
+
                     resourceInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'resource.label', default: 'Resource')] as Object[], "Another user has updated this Resource while you were editing")
                     render(view: "edit", model: [resourceInstance: resourceInstance])
                     return
@@ -88,7 +90,7 @@ class ResourceController {
     }
 
     def delete = {
-        def resourceInstance = Resource.get(params.id)
+        Resource resourceInstance = Resource.get(params.id)
         if (resourceInstance) {
             try {
                 resourceInstance.delete(flush: true)

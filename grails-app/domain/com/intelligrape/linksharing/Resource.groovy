@@ -6,24 +6,21 @@ class Resource {
     User createdBy;
     Date dateCreated;
     String heading;
-     String summary;
+    String summary;
 
-
-    static mapping = {
-        tablePerHierarchy false
-       summary type: 'text'
-
-    }
     static belongsTo = [Topic]
 
-    //static hasMany = [userResources:UserResource]
     static constraints = {
         heading(blank: false)
         summary(blank: false)
+    }
 
+     static mapping = {
+        tablePerHierarchy false
+        summary type: 'text'
     }
 
     String toString(){
-        return "${heading}"
-    }
+            return "${heading}"
+        }
 }

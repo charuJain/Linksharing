@@ -14,14 +14,14 @@ class LinkResourceController {
     }
 
     def create = {
-        def linkResourceInstance = new LinkResource()
+        LinkResource linkResourceInstance = new LinkResource()
         linkResourceInstance.properties = params
         User user = User.get(session.currentUser)
         return [linkResourceInstance: linkResourceInstance, user: user]
     }
 
     def save = {
-        def linkResourceInstance = new LinkResource(params)
+        LinkResource linkResourceInstance = new LinkResource(params)
         if (linkResourceInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'linkResource.label', default: 'LinkResource'), linkResourceInstance.id])}"
             redirect(action: "show", id: linkResourceInstance.id)
@@ -29,39 +29,41 @@ class LinkResourceController {
         else {
 
             User user = User.get(session.currentUser)
-            render(view: "create", model: [linkResourceInstance: linkResourceInstance,user: user])
+            render(view: "create", model: [linkResourceInstance: linkResourceInstance, user: user])
         }
     }
 
     def show = {
-        def linkResourceInstance = LinkResource.get(params.id)
-        if (!linkResourceInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'linkResource.label', default: 'LinkResource'), params.id])}"
-            redirect(action: "list")
+        LinkResource linkResourceInstance = LinkResource.get(params.id)
+        if (linkResourceInstance) {
+            User user = User.get(session.currentUser)
+            return [linkResourceInstance: linkResourceInstance, user: user]
+
         }
         else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'linkResource.label', default: 'LinkResource'), params.id])}"
+            redirect(action: "list")
 
-            User user = User.get(session.currentUser)
-
-           return [linkResourceInstance: linkResourceInstance,user: user]
         }
     }
 
     def edit = {
-        def linkResourceInstance = LinkResource.get(params.id)
-        if (!linkResourceInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'linkResource.label', default: 'LinkResource'), params.id])}"
-            redirect(action: "list")
+        LinkResource linkResourceInstance = LinkResource.get(params.id)
+        if (linkResourceInstance) {
+            User user = User.get(session.currentUser)
+            return [linkResourceInstance: linkResourceInstance, user: user]
+
         }
         else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'linkResource.label', default: 'LinkResource'), params.id])}"
+            redirect(action: "list")
 
-            User user = User.get(session.currentUser)
-            return [linkResourceInstance: linkResourceInstance,user:user]
+
         }
     }
 
     def update = {
-        def linkResourceInstance = LinkResource.get(params.id)
+        LinkResource linkResourceInstance = LinkResource.get(params.id)
         if (linkResourceInstance) {
             if (params.version) {
                 def version = params.version.toLong()
@@ -88,7 +90,7 @@ class LinkResourceController {
     }
 
     def delete = {
-        def linkResourceInstance = LinkResource.get(params.id)
+        LinkResource linkResourceInstance = LinkResource.get(params.id)
         if (linkResourceInstance) {
             try {
                 linkResourceInstance.delete(flush: true)

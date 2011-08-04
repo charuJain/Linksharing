@@ -63,7 +63,6 @@ class BootstrapService {
             new Topic(isPrivate: false, createdBy: user, name: "${it}").save(flush: true, failOnError: true)
 
         }
-
     }
 
     void subscribedTopics() {
@@ -73,60 +72,6 @@ class BootstrapService {
             }
         }
     }
-
-//    Topic topic1 = new Topic(isPrivate: false, createdBy: User.findByUsername('test6'), name: "Grails")
-    //        Topic topic2 = new Topic(isPrivate: false, createdBy: User.findByUsername('test2'), name: "ADA")
-    //        Topic topic3 = new Topic(isPrivate: false, createdBy: User.findByUsername('test3'), name: "Groovy")
-    //        Topic topic4 = new Topic(isPrivate: false, createdBy: User.findByUsername('test4'), name: "Maths")
-    //        Topic topic5 = new Topic(isPrivate: false, createdBy: User.findByUsername('test5'), name: "C++")
-    //
-    //        topic1.save(flush: true)
-    //        topic1.errors.allErrors.each {
-    //            println it
-    //        }
-    //        topic2.save(flush: true)
-    //        topic2.errors.allErrors.each {
-    //            println it
-    //        }
-    //
-    //        topic3.save(flush: true)
-    //        topic3.errors.allErrors.each {
-    //            println it
-    //        }
-    //        topic4.save(flush: true)
-    //        topic4.errors.allErrors.each {
-    //            println it
-    //        }
-    //
-    //        topic5.save(flush: true)
-    //        topic5.errors.allErrors.each {
-    //            println it
-    //        }
-    //
-    //
-    //
-    //
-    //        UserTopic userTopic6 = new UserTopic(user: User.findByUsername('test2'), topic: topic1)
-    //        userTopic6.save()
-    //        UserTopic userTopic2 = new UserTopic(user: User.findByUsername('test3'), topic: topic5)
-    //        userTopic2.save()
-    //        UserTopic userTopic3 = new UserTopic(user: User.findByUsername('test2'), topic: topic4)
-    //        userTopic3.save()
-    //        UserTopic userTopic4 = new UserTopic(user: User.findByUsername('test3'), topic: topic2)
-    //        userTopic4.save()
-    //        UserTopic userTopic5 = new UserTopic(user: User.findByUsername('test4'), topic: topic2)
-    //        userTopic5.save()
-    //        UserTopic userTopic7 = new UserTopic(user: User.findByUsername('test4'), topic: topic3)
-    //        userTopic7.save()
-    //        UserTopic userTopic8 = new UserTopic(user: User.findByUsername('test5'), topic: topic3)
-    //        userTopic8.save()
-    //        UserTopic userTopic9 = new UserTopic(user: User.findByUsername('test5'), topic: topic5)
-    //        userTopic9.save()
-    //         UserTopic userTopic10 = new UserTopic(user: User.findByUsername('test2'), topic: topic5)
-    //        userTopic10.save()
-    //
-    //        User.findByUsername('test2').addToUserTopics(new UserTopic(topic: topic3))
-    //        User.findByUsername('test2').addToUserTopics(new UserTopic(topic: topic5))
 
 
     void createResources() {
@@ -154,12 +99,11 @@ class BootstrapService {
     }
 
     void createRead() {
-
         (1..10).each {
             UserResource userResource = new UserResource(user: User.get(2), resource: Resource.get(it), isRead: true)
             userResource.save(flush: true)
         }
-        println "resources added to read resource"
+        println "resources marked as read resource"
     }
 
     void markUnread() {
@@ -174,8 +118,6 @@ class BootstrapService {
         UserResource.findAllByIsReadAndUser(false, User.get(2)).each {
             println it.resource;
         }
-        println "Marked read"
+        println "Printed unread resources"
     }
-
-
 }

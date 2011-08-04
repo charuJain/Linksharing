@@ -7,9 +7,6 @@ class UserResource {
     boolean isRead = false;
 
     static belongsTo = [User]
-
-    //List<Resource>resources=[]
-    // static hasMany = [resorces:Resource]
     static constraints = {
     }
 }
