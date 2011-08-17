@@ -1,4 +1,4 @@
-<%@ page import="com.intelligrape.linksharing.Resource" %>
+<%@ page import="com.intelligrape.linksharing.User; com.intelligrape.linksharing.Resource" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,8 +12,10 @@
     <g:render template="/shared/header"></g:render>
     <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label"
                                                                            args="[entityName]"/></g:link></span>
-    <span class="menuButton"><g:link class="create" action="create" params="[resourceInstanceId:resourceInstance.id]"><g:message code="default.new.label"
-                                                                               args="[entityName]"/></g:link></span>
+    %{--<span class="menuButton"><g:link class="create" action="create"--}%
+                                     %{--params="[resourceInstanceId:resourceInstance.id]"><g:message--}%
+                %{--code="default.new.label"--}%
+                %{--args="[entityName]"/></g:link></span>--}%
 </div>
 
 <div class="body">
@@ -57,7 +59,7 @@
             <tr class="prop">
                 <td valign="top" class="name"><g:message code="resource.dateCreated.label" default="Date Created"/></td>
 
-                <td valign="top" class="value"> <ls:myDateFormat date="${new Date()}"/></td>
+                <td valign="top" class="value"><ls:myDateFormat date="${new Date()}"/></td>
 
             </tr>
 
@@ -76,12 +78,17 @@
 
     <div class="buttons">
         <g:form>
+            <g:if test="${(resourceInstance.createdBy.id == session.currentUser) || (User.get(session.currentUser).isAdmin)}">
             <g:hiddenField name="id" value="${resourceInstance?.id}"/>
-            <span class="button"><g:actionSubmit class="edit" action="edit"
-                                                 value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>
-            <span class="button"><g:actionSubmit class="delete" action="delete"
-                                                 value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                                                 onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
+
+                <span class="button"><g:actionSubmit class="edit" action="edit"
+                                                     value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>
+                <span class="button"><g:actionSubmit class="delete" action="delete"
+                                                     value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                                                     onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
+
+            </g:if>
+             <g:link controller="resource" action="markUnread" id="${resourceInstance?.id}">Mark Unread</g:link>
         </g:form>
     </div>
 </div>

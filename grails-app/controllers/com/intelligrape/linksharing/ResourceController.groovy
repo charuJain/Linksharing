@@ -8,6 +8,15 @@ class ResourceController {
         redirect(action: "list", params: params)
     }
 
+    def markUnread={
+        Resource resourceInstance = Resource.get(params.id)
+        User user=User.get(session.currentUser)
+        UserResource userResource=UserResource.findByUserAndResource(user,resourceInstance)
+        userResource.isRead=false;
+        redirect(controller: "user" ,action: "dashboard")
+    }
+
+
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [resourceInstanceList: Resource.list(params), resourceInstanceTotal: Resource.count()]
@@ -34,8 +43,13 @@ class ResourceController {
 
     def show = {
         Resource resourceInstance = Resource.get(params.id)
+        println resourceInstance
         if (resourceInstance) {
             User user = User.get(session.currentUser)
+            UserResource userResource = UserResource.findByUserAndResource(user, resourceInstance)
+            if (userResource) {
+                userResource.isRead = true
+            }
             [resourceInstance: resourceInstance, user: user]
 
         }

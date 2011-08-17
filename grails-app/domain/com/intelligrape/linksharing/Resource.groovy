@@ -23,4 +23,11 @@ class Resource {
     String toString(){
             return "${heading}"
         }
+
+     def afterInsert = {
+        User user = this.createdBy
+        UserResource userResource = new UserResource(resource: this, user: user)
+        user.addToUserResources(userResource)
+    }
+
 }

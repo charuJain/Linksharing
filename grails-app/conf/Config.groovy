@@ -11,7 +11,7 @@
 // }
 
 
-path = '/home/charu/Documents/'
+path = '/home/charu/Desktop/'
 
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination

@@ -43,7 +43,7 @@ class InvitationController {
     def show = {
         Invitation invitationInstance = Invitation.get(params.id)
         if (invitationInstance) {
-               [invitationInstance: invitationInstance]
+            [invitationInstance: invitationInstance]
         }
         else {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'invitation.label', default: 'Invitation'), params.id])}"
@@ -113,11 +113,10 @@ class InvitationController {
     def sendHandler = {SendEmailCO cmd ->
         if (cmd.hasErrors()) {
             cmd.errors.allErrors.each {
-
             }
         }
         else {
-            mailingService.sendInvitation(cmd.sendTos.grep{it}, cmd.sendFrom, cmd.topic)
+            mailingService.sendInvitation(cmd.sendTos.grep {it}, cmd.sendFrom, cmd.topic)
         }
     }
 

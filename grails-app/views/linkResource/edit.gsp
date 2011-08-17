@@ -59,6 +59,7 @@
                     <td valign="top"
                         class="value ${hasErrors(bean: linkResourceInstance, field: 'createdBy', 'errors')}">
                          ${user?.name}
+
                     </td>
                 </tr>
 

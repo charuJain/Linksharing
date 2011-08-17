@@ -1,0 +1,217 @@
+[  48532]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[  48534]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[  48534]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[  48534]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[  48534]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[  48534]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[  48534]  ERROR - .changes.ChangeListManagerImpl - Last Action: OpenProject 
+[  54948]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[  54951]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[  54951]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[  54951]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[  54951]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[  54952]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[  54952]  ERROR - .changes.ChangeListManagerImpl - Last Action: OpenProject 
+[ 128210]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[ 128278]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[ 128279]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[ 128279]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[ 128279]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[ 128279]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[ 128279]  ERROR - .changes.ChangeListManagerImpl - Last Action: OpenProject 
+[ 132105]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[ 132128]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[ 132128]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[ 132128]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[ 132128]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[ 132129]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[ 132129]  ERROR - .changes.ChangeListManagerImpl - Last Action: OpenProject 
+[3914229]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[3914230]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[3914230]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[3914230]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[3914230]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[3914230]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[3914230]  ERROR - .changes.ChangeListManagerImpl - Last Action: EditorPaste 
+[  22900]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[  22911]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[  22911]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[  22911]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[  22911]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[  22911]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[  22911]  ERROR - .changes.ChangeListManagerImpl - Last Action:  
+[  27962]  ERROR - .changes.ChangeListManagerImpl - null 
+java.lang.NullPointerException
+	at com.intellij.openapi.vfs.impl.local.LocalFileSystemBase.findFileByIoFile(LocalFileSystemBase.java:70)
+	at git4idea.GitUtil.getGitRootOrNull(GitUtil.java:258)
+	at git4idea.changes.ChangeCollector.addToPaths(ChangeCollector.java:160)
+	at git4idea.changes.ChangeCollector.dirtyPaths(ChangeCollector.java:118)
+	at git4idea.changes.ChangeCollector.collectUnmergedAndUnversioned(ChangeCollector.java:242)
+	at git4idea.changes.ChangeCollector.ensureCollected(ChangeCollector.java:93)
+	at git4idea.changes.ChangeCollector.changes(ChangeCollector.java:74)
+	at git4idea.changes.GitChangeProvider.getChanges(GitChangeProvider.java:89)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:530)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.a(ChangeListManagerImpl.java:401)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl.access$500(ChangeListManagerImpl.java:64)
+	at com.intellij.openapi.vcs.changes.ChangeListManagerImpl$ActualUpdater.execute(ChangeListManagerImpl.java:275)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:198)
+	at com.intellij.openapi.vcs.changes.UpdateRequestsQueue$MyRunnable$1.consume(UpdateRequestsQueue.java:196)
+	at com.intellij.openapi.vcs.changes.ExecutorWrapper$3.run(ExecutorWrapper.java:101)
+	at com.intellij.openapi.application.impl.ApplicationImpl$6.run(ApplicationImpl.java:375)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:441)
+	at java.util.concurrent.FutureTask$Sync.innerRun(FutureTask.java:303)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:138)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:662)
+	at com.intellij.openapi.application.impl.ApplicationImpl$1$1.run(ApplicationImpl.java:130)
+[  27974]  ERROR - .changes.ChangeListManagerImpl - IntelliJ IDEA 10.5  Build #IU-107.105 
+[  27975]  ERROR - .changes.ChangeListManagerImpl - JDK: 1.6.0_24 
+[  27975]  ERROR - .changes.ChangeListManagerImpl - VM: Java HotSpot(TM) Server VM 
+[  27975]  ERROR - .changes.ChangeListManagerImpl - Vendor: Sun Microsystems Inc. 
+[  27975]  ERROR - .changes.ChangeListManagerImpl - OS: Linux 
+[  27975]  ERROR - .changes.ChangeListManagerImpl - Last Action:  

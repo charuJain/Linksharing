@@ -6,6 +6,7 @@ class UserController {
 
     def mostSubscribedService
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
     def dashboard = {
         User user = User.get(session.currentUser)
         [user1: user]

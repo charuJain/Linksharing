@@ -10,6 +10,15 @@ class UserTopicController {
         redirect(action: "list", params: params)
     }
 
+    def subscribe = {
+        User user = User.get(session.currentUser)
+        Topic topic = Topic.get(params.id)
+        UserTopic userTopic = new UserTopic(user: user, topic: topic)
+        user.addToUserTopics(userTopic)
+        topic.addToUserTopics(userTopic)
+        redirect(controller: "user", action: "dashboard")
+    }
+
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [userTopicInstanceList: UserTopic.list(params), userTopicInstanceTotal: UserTopic.count()]
@@ -50,10 +59,10 @@ class UserTopicController {
     def edit = {
         UserTopic userTopicInstance = UserTopic.get(params.id)
         if (userTopicInstance) {
-             render(view: 'edit', model: [userTopicInstance: userTopicInstance])
+            render(view: 'edit', model: [userTopicInstance: userTopicInstance])
         }
         else {
-             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'userTopic.label', default: 'UserTopic'), params.id])}"
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'userTopic.label', default: 'UserTopic'), params.id])}"
             redirect(action: "list")
 
         }

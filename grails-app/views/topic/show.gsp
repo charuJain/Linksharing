@@ -1,4 +1,4 @@
-<%@ page import="com.intelligrape.linksharing.Topic" %>
+<%@ page import="com.intelligrape.linksharing.User; com.intelligrape.linksharing.Topic" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -9,9 +9,7 @@
 
 <body>
 <div class="nav">
-       <g:render template="/shared/header"></g:render>
-    %{--<span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label"--}%
-                                                                           %{--args="[entityName]"/></g:link></span>--}%
+    <g:render template="/shared/header"></g:render>
     <span class="menuButton"><g:link class="create" action="create"><g:message code="default.new.label"
                                                                                args="[entityName]"/></g:link></span>
 </div>
@@ -61,38 +59,35 @@
                     <ul>
                         <g:each in="${topicInstance.resources}" var="resource">
                             <li><g:link controller="resource" action="show"
-                                        id="${resource.id}">${resource?.encodeAsHTML()}</g:link></li>
+                                        id="${resource?.id}">${resource?.encodeAsHTML()}</g:link></li>
                         </g:each>
                         <g:link controller="linkResource" action="create"
                                 params="['topic.id':topicInstance.id]">Add Link Resource</g:link><br>
-                        <g:link controller="documentResource" action="create">Add Document Resource</g:link>
+                        <g:link controller="documentResource" action="create"
+                                params="['topic.id':topicInstance.id]">Add Document Resource</g:link>
                     </ul>
                 </td>
             </tr>
-            %{--<tr class="prop">--}%
-                %{--<td valign="top" class="name"><g:message code="topic.userTopics.label" default="User Topics"/></td>--}%
-                %{--<td valign="top" style="text-align: left;" class="value">--}%
-                    %{--<ul>--}%
-                        %{--<g:each in="${topicInstance.userTopics}" var="u">--}%
-                            %{--<li><g:link controller="userTopic" action="show"--}%
-                                        %{--id="${u.id}">${u?.encodeAsHTML()}</g:link></li>--}%
-                        %{--</g:each>--}%
-                    %{--</ul>--}%
-                %{--</td>--}%
-            %{--</tr>--}%
-
             </tbody>
         </table>
     </div>
+
     <div class="buttons">
         <g:form>
             <g:hiddenField name="id" value="${topicInstance?.id}"/>
-            <span class="button"><g:actionSubmit class="edit" action="edit"
-                                                 value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>
-            <span class="button"><g:actionSubmit class="delete" action="delete"
-                                                 value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                                                 onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>
+            <g:if test="${(topicInstance.createdBy.id == session.currentUser) || (User.get(session.currentUser).isAdmin)}">
+                <span class="button"><g:actionSubmit class="edit" action="edit"
+                                                     value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>
+                <span class="button">
+                    <g:actionSubmit class="delete" action="delete"
+                                    value="${message(code: 'default.button.delete.label', default: 'Delete')}"
+                                    onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
+
+                </span>
+            </g:if>
+
             <g:link controller='invitation' action='handler' id="${topicInstance?.id}">send invitations</g:link>
+            <g:link controller="userTopic" action="subscribe" id="${topicInstance?.id}">Subscribe it now</g:link>
         </g:form>
     </div>
 </div>

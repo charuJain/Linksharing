@@ -4,7 +4,7 @@ class UserResource {
 
     User user;
     Resource resource;
-    boolean isRead = false;
+    boolean isRead = true;
 
     static belongsTo = [User]
     static constraints = {
